@@ -790,12 +790,14 @@ if __name__ == '__main__':
     load_disease_model()
     load_crop_models()
     
-    # Run application
+    # Run application (FIXED FOR RAILWAY)
     print("\n" + "="*60)
     print("AI-Driven Crop Disease Prediction System")
     print("="*60)
-    print("Server starting at http://127.0.0.1:5000")
-    print("Default admin: admin@crop.ai / admin123")
-    print("="*60 + "\n")
     
-    app.run(debug=True, host='127.0.0.1', port=5000)
+    port = int(os.environ.get("PORT", 5000))   # 🔥 IMPORTANT
+    print(f"Server starting on port {port}")
+    
+    app.run(debug=False, host='0.0.0.0', port=port)   # 🔥 FIXED
+    
+

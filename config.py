@@ -9,16 +9,17 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 class Config:
     """Base configuration"""
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'dev-secret-key-change-in-production'
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'database', 'app.db')
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
+    'sqlite:///' + os.path.join(basedir, 'database', 'app.db')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     
     # Upload settings
-    UPLOAD_FOLDER = 'static/uploads'
+    UPLOAD_FOLDER = os.path.join(basedir, 'static', 'uploads')
     MAX_CONTENT_LENGTH = 16 * 1024 * 1024  # 16MB max file size
     ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
     
     # Model settings
-    MODEL_PATH = 'models/my_cnn_model.h5'
+    MODEL_PATH = os.path.join(basedir, 'models', 'my_cnn_model.h5')
     IMAGE_SIZE = (150, 150)
     
     # Crop data - Expanded list

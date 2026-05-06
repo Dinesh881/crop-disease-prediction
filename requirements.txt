@@ -5,3 +5,4 @@ bcrypt==4.1.2
 scikit-learn==1.4.0
 numpy==1.26.4
 pandas==2.2.2
+gunicorn==21.2.0
